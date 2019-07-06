@@ -67,8 +67,6 @@
 				"net_ip":                 "CHANGEME",
 				"net_enabled":            "1",
 
-				"sv_master1":             "master.ioquake3.org",
-				"sv_master2":             "master.quake3arena.com",
 				"sv_clientTLD":           "1",
 
 				"df_gametype":            "1",
