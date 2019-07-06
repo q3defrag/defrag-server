@@ -28,3 +28,7 @@ to detach do `ctrl + b` then press `d`
 
 to scroll do `ctrl + b` then `page up`
 
+
+## TODO
+
+ * `install.sh` should be using `-j $(nproc)` when compiling
