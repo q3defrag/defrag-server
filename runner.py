@@ -198,7 +198,7 @@ def main(argv):
                 '+set sv_pure {}'.format(configs[server_name]['config']['sv_pure']),
                 '+set fs_game defrag',
                 '+set dedicated 2',
-                '+set vm_game 0',
+                '+set vm_game 2',
                 '+set ttycon_ansicolor 1',
                 '+set bot_enable 0',
                 '+exec cfgs/{}.cfg'.format(server_name)
