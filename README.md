@@ -1,5 +1,5 @@
 # defrag-server
-A collection of scripts and tools for running a defrag server, these were built for ubuntu 16.04 i363, but likely will work on other versions
+A collection of scripts and tools for running a defrag server, these were built for ubuntu 16.04 i386, but likely will work on other versions
 
 
 ## How to use
