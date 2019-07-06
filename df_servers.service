@@ -1,0 +1,11 @@
+[Unit]
+Description=Start the runner.py script which will maintain the defrag servers
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/96/runner.py -c /root/96/config.json -s mixed-1 fastcaps-1 teamrun-1 beta
+
+[Install]
+WantedBy=multi-user.target

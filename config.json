@@ -1,0 +1,241 @@
+{
+    "root": "/root/96",
+    "engine": "quake3e.ded",
+	"templates": {
+		"global": {
+			"map": "test_bigbox",
+			"modules": [
+				"admin",
+				"challenge",
+				"compare",
+				"find",
+				"login",
+				"logout",
+				"mapdownload",
+				"mapinfo",
+				"me",
+				"my",
+				"mytime",
+				"oldmytime",
+				"oldrank",
+				"oldtime",
+				"oldtop",
+				"popular",
+				"random",
+				"rank",
+				"rankings",
+				"ranktime",
+				"ratemap",
+				"recent",
+				"servers",
+				"time",
+				"top",
+				"user",
+				"version",
+				"who"
+			],
+			"config" : {
+				"rconpassword":           "CHANGEME",
+				"sv_privatePassword":     "",
+				"g_password":             "",
+
+				".admin-name":            "CHANGEME",
+				".admin-mail":            "CHANGEME",
+				".admin-jabber":          "",
+				".admin-irc":             "",
+				".server-location":       "CHANGEME",
+				".homepage":              "http://q3df.org/",
+				".mapbase":               "http://ws.q3df.org/",
+
+				"sv_floodprotect":        "0",
+				"sv_punkbuster":          "0",
+				"sv_allowDownload":       "0",
+				"sv_privateClients":      "2",
+				"sv_pure":                "0",
+
+				"sv_maxrate":             "50000",
+				"sv_strictAuth":          "0",
+				"sv_maxclients":          "32",
+				"sv_fps":                 "125",
+				"pmove_fixed":            "1",
+				"g_synchronousClients":   "0",
+
+				"g_logsync":              "1",
+				"com_ansiColor":          "1",
+				"com_hunkmegs":           "512",
+				"com_protocol":           "68",
+				"net_ip":                 "CHANGEME",
+				"net_enabled":            "1",
+
+				"sv_master1":             "master.ioquake3.org",
+				"sv_master2":             "master.quake3arena.com",
+				"sv_clientTLD":           "1",
+
+				"df_gametype":            "1",
+				"df_mode_tricksmode":     "2",
+				"df_mode_fastcaps":       "2",
+
+				"df_promode":             "0",
+				"df_ndm_weaponsSet":      "2046",
+				"df_ndm_interferenceOff": "3",
+				"df_mp_interferenceOff":  "3",
+				"df_ndm_weaponsPickup":   "0",
+				"df_ndm_itemsSpawn":      "1",
+				"df_ndm_damage":          "0",
+				"df_ndm_powerups":        "1",
+				"df_lg_knockback":        "1",
+
+				"df_vote_allowVotes":         "1",
+				"df_vote_maxVotes":           "3",
+				"df_vote_passVoteOnRatio":    "0.51",
+				"df_vote_allow_devmap":       "0",
+				"df_vote_allow_map":          "1",
+				"df_vote_allow_map_restart":  "0",
+				"df_vote_allow_nextmap":      "0",
+				"df_vote_allow_gametype":     "0",
+				"df_vote_allow_mode":         "0",
+				"df_vote_allow_kick":         "1",
+				"df_vote_allow_clientkick":   "1",
+				"df_vote_allow_promode":      "1",
+				"df_vote_voteDelay":          "30",
+				"df_vote_allow_interference": "0",
+				"df_sv_script_idleDelay":     "30",
+
+				"rs_enable":                  "1",
+				"rs_mode":                    "0",
+				"rs_noserverdemos":           "0",
+				"rs_anticheat":               "1",
+				"rs_debug":                   "111",
+				"rs_floodlimit":              "2",
+				"rs_maxClientConnections":    "2",
+				"rs_mod_path":                "defrag/modules",
+				"rs_banTimerReset":           "0"
+			}
+		},
+		"run": {
+			"map": "test_bigbox",
+			"config": {
+				"df_sv_script_idleDelay": "300"
+			}
+		},
+		"ctf": {
+			"map": "q3wcp4",
+			"config": {
+				"df_gametype":        "3",
+				"df_mode_tricksmode": "2",
+				"df_mode_fastcaps":   "2"
+			}
+		},
+		"freestyle": {
+			"map": "freestlyle_88",
+			"config": {
+				"df_vote_allow_interference": "0",
+				"df_gametype":        "6",
+				"df_mode_tricksmode": "5"
+			}
+		},
+		"teamrun": {
+			"map": "ojdf-sa",
+			"config": {
+				"df_gametype": "5",
+				"df_vote_allow_interference": "0",
+                "df_mp_interference": "1"
+			}
+		}
+	},
+
+	"servers": {
+		"mixed-1": {
+			"port": "27960",
+			"rs_server_id": "CHANGEME",
+			"templates": ["global", "run"],
+			"map": "elco-gbparadise",
+			"config": {
+				"g_log":                "mixed-1.log",
+				"sv_hostname":          "^1CHANGE^3ME^7",
+				"df_vote_allow_mode":   "1",
+				"df_vote_allow_devmap": "1",
+				"df_promode":           "1",
+				"df_obs_KillObs":       "1",
+				"net_enabled":          "3",
+				"net_ip6":              "CHANGEME"
+			}
+		},
+		"fastcaps-1": {
+			"port": "27961",
+			"rs_server_id": "CHANGEME",
+			"templates": ["global", "ctf"],
+			"map": "kineterra1",
+			"config": {
+				"g_log":                "fastcaps-1.log",
+				"sv_hostname":          "^1CHANGE^3ME^7",
+				"df_vote_allow_mode":   "1",
+				"df_vote_allow_devmap": "1",
+				"df_promode":           "1",
+				"net_enabled":          "3",
+				"net_ip6":              "CHANGEME"
+			}
+		},
+		"teamrun-1": {
+			"port": "27962",
+			"rs_server_id": "CHANGEME",
+			"templates": ["global", "teamrun"],
+			"configTemplate": ["global", "teamrun"],
+			"config": {
+				"g_log":              "teamrun-1.log",
+				"sv_hostname":        "^1CHANGE^3ME^7",
+				"df_vote_allow_mode": "1",
+				"df_promode":         "1"
+			}
+		},
+		"beta": {
+			"port": "27969",
+			"rs_server_id": "CHANGEME",
+			"templates": ["global", "run"],
+			"map": "elco-gbparadise",
+			"config": {
+				"rs_enable":            "0",
+				"g_log":                "beta.log",
+				"g_password":           "CHANGEME",
+				"sv_hostname":          "^1CHANGE^3ME^7",
+				"df_vote_allow_mode":   "1",
+				"df_vote_allow_devmap": "1",
+				"df_promode":           "1",
+				"df_obs_KillObs":       "1",
+				"net_enabled":          "3",
+				"net_ip6":              "CHANGEME"
+			}
+		},
+		"vq3-1": {
+			"port": "27963",
+			"rs_server_id": "CHANGEME",
+			"templates": ["global", "run"],
+			"config": {
+				"g_log":       "vq3-1.log",
+				"sv_hostname": "^1CHANGE^3ME^7",
+				"df_promode":  "0"
+			}
+		},
+		"cpm-1": {
+			"port": "27964",
+			"rs_server_id": "CHANGEME",
+			"templates": ["global", "run"],
+			"config": {
+				"g_log":       "cpm-1.log",
+				"sv_hostname": "^1CHANGE^3ME^7",
+				"df_promode":  "1"
+			}
+		},
+		"freestyle-1": {
+			"port": "27965",
+			"rs_server_id": "CHANGEME",
+			"configTemplate": ["global", "freestyle"],
+			"config": {
+				"g_log":              "freestyle.log",
+				"sv_hostname":        "^1CHANGE^3ME^7",
+				"df_vote_allow_mode": "1",
+				"df_promode":         "1"
+			}
+		}
+	}
+}
