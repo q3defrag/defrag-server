@@ -155,7 +155,11 @@ def main(argv):
     # Store all the server configs
     configs = {}
     for server_name in args.servers:
-        configs[server_name] = generate_config(server_name, config)
+        try:
+            configs[server_name] = generate_config(server_name, config)
+        except KeyError as e:
+            print("{} is not defined in {}".format(e, args.config))
+            return 1
 
         # Write the config to disk, this is loaded by the q3 server
         config_path = '{0}/servers/conf/{1}/defrag/cfgs/{1}.cfg'.format(config['root'], server_name)
@@ -177,12 +181,13 @@ def main(argv):
         try:
             sessions = subprocess.check_output(['tmux', 'ls']).decode('utf-8').splitlines()
             sessions = [x.split(':')[0] for x in sessions]
-            down = list(set(sessions) - set(args.servers))
+            down = list(set(args.servers) - set(sessions))
         except subprocess.CalledProcessError:
             print("No tmux sessions found")
             down = args.servers
 
         for server_name in down:
+
             # If someone on the system starts tmux we don't want to crash this process
             if server_name not in configs:
                 continue
@@ -198,7 +203,7 @@ def main(argv):
                 '+set sv_pure {}'.format(configs[server_name]['config']['sv_pure']),
                 '+set fs_game defrag',
                 '+set dedicated 2',
-                '+set vm_game 2',
+                '+set vm_game 0',
                 '+set ttycon_ansicolor 1',
                 '+set bot_enable 0',
                 '+exec cfgs/{}.cfg'.format(server_name)
@@ -211,7 +216,7 @@ def main(argv):
             print("Starting server '{}'".format(server_name))
             # Run the q3e dedicated server in tmux so we can
             # freely attach and detatch from this session
-            subprocess.run(['tmux', 'new', '-d', '-s', server_name,
+            subprocess.Popen(['tmux', 'new', '-d', '-s', server_name,
                             "{} {}".format(q3binary, ' '.join(q3args))],
                             cwd=q3directory,
                             shell=False)
