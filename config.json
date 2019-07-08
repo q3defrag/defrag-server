@@ -62,7 +62,7 @@
 
 				"g_logsync":              "1",
 				"com_ansiColor":          "1",
-				"com_hunkmegs":           "512",
+				"com_hunkmegs":           "256",
 				"com_protocol":           "68",
 				"net_ip":                 "CHANGEME",
 				"net_enabled":            "1",
@@ -137,7 +137,7 @@
 			"config": {
 				"df_gametype": "5",
 				"df_vote_allow_interference": "0",
-                "df_mp_interference": "1"
+				"df_mp_interferenceOff": "0"
 			}
 		}
 	},
