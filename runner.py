@@ -199,7 +199,6 @@ def main(argv):
                 '+set net_port {}'.format(configs[server_name]['port']),
                 '+set rs_server_id {}'.format(configs[server_name]['rs_server_id']),
                 '+set com_hunkmegs {}'.format(configs[server_name]['config']['com_hunkmegs']),
-                '+set com_protocol {}'.format(configs[server_name]['config']['com_protocol']),
                 '+set sv_pure {}'.format(configs[server_name]['config']['sv_pure']),
                 '+set fs_game defrag',
                 '+set dedicated 2',
