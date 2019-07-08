@@ -23,6 +23,13 @@ Since I'm using tmux you can type `tmux attach -t <server_name>` to attach to a 
 for example `tmux attach -t mixed-1`
 
 all tmux sessions can be viewed with `tmux ls`
+```
+root@eggplant:~# tmux ls
+beta: 1 windows (created Mon Jul  8 21:54:27 2019) [80x23]
+fastcaps-1: 1 windows (created Mon Jul  8 21:54:27 2019) [80x23]
+mixed-1: 1 windows (created Mon Jul  8 21:54:27 2019) [134x37]
+teamrun-1: 1 windows (created Mon Jul  8 21:54:27 2019) [80x23]
+```
 
 to detach do `ctrl + b` then press `d`
 
@@ -32,3 +39,5 @@ to scroll do `ctrl + b` then `page up`
 ## TODO
 
  * `install.sh` should be using `-j $(nproc)` when compiling
+ * config regeneration should happen on a single server restart (on crash too?)
+ * map downloader needs to be created
