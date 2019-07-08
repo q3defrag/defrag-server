@@ -41,3 +41,5 @@ to scroll do `ctrl + b` then `page up`
  * `install.sh` should be using `-j $(nproc)` when compiling
  * config regeneration should happen on a single server restart (on crash too?)
  * map downloader needs to be created
+ * separate other runtime artifacts (like logs) from maps directory
+ * separate maps directory per server
