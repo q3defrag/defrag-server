@@ -54,7 +54,6 @@
 				"sv_pure":                "0",
 
 				"sv_maxrate":             "50000",
-				"sv_strictAuth":          "0",
 				"sv_maxclients":          "32",
 				"sv_fps":                 "125",
 				"pmove_fixed":            "1",
@@ -62,7 +61,6 @@
 
 				"g_logsync":              "1",
 				"com_hunkmegs":           "256",
-				"com_protocol":           "68",
 				"net_ip":                 "CHANGEME",
 				"net_enabled":            "1",
 
