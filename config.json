@@ -61,7 +61,6 @@
 				"g_synchronousClients":   "0",
 
 				"g_logsync":              "1",
-				"com_ansiColor":          "1",
 				"com_hunkmegs":           "256",
 				"com_protocol":           "68",
 				"net_ip":                 "CHANGEME",
