@@ -2,10 +2,12 @@
 import argparse
 import os
 import requests
+import shutil
 import sys
 import time
 
 from collections import OrderedDict
+from contextlib import closing
 from lxml import html
 
 WS_URL = 'https://en.ws.q3df.org'
@@ -63,6 +65,7 @@ def collect_pk3_data(final_date=None, final_pk3=None, count=None):
                     collecting = False
                     break
 
+                print("{} collected".format(pk3_name))
                 # Initialize the pk3 data structure
                 pk3_data[pk3_name] = dict()
                 pk3_data[pk3_name]['release_date'] = release_date
@@ -142,12 +145,13 @@ def download_pk3s(pk3_data, directory):
         path = '{}/{}'.format(directory, output_filename)
         print("Downloading {}...".format(pk3_name), end='', flush=True)
 
-        with requests.get(url, stream=True, headers={'User-agent': 'defrag-server-scraper'}) as data:
+        # In python 3.7 closing() can be removed (and the import too)
+        with closing(requests.get(url,
+                     stream=True,
+                     headers={'User-agent': 'defrag-server-scraper'})) as data:
             data.raise_for_status()
             with open(path, 'wb') as file_descriptor:
-                for chunk in data.iter_content(chunk_size=8192):
-                    if chunk:
-                        file_descriptor.write(chunk)
+                shutil.copyfileobj(data.raw, file_descriptor)
 
         print("DONE!")
         # Wait a little bit before starting the next file
