@@ -141,9 +141,17 @@ def download_pk3s(pk3_data, directory):
         output_filename = '{}.pk3'.format(pk3_name)
         path = '{}/{}'.format(directory, output_filename)
         print("Downloading {}...".format(pk3_name), end='', flush=True)
-        data = requests.get(url)
-        open(path, 'wb').write(data.content)
+
+        with requests.get(url, stream=True, headers={'User-agent': 'defrag-server-scraper'}) as data:
+            data.raise_for_status()
+            with open(path, 'wb') as file_descriptor:
+                for chunk in data.iter_content(chunk_size=8192):
+                    if chunk:
+                        file_descriptor.write(chunk)
+
         print("DONE!")
+        # Wait a little bit before starting the next file
+        time.sleep(1)
 
 def main(argv):
     args = process_arguments(argv)
