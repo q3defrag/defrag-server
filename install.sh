@@ -1,10 +1,10 @@
 #!/bin/bash
 
-apt update
-apt upgrade
+apt update -y
+apt upgrade -y
 
 # Will be needed later
-apt install -y unzip unionfs-fuse
+apt install -y unzip unionfs-fuse python3-lxml
 
 # Create the directory structure
 [[ -d defrag-base ]] || mkdir defrag-base
