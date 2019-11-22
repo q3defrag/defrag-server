@@ -13,6 +13,6 @@ iface ens3 inet6 static
     address 2001:19f0:5:2e2::960/64
     dns-nameservers 2606:4700:4700::1001
 
-up /sbin/ip -6 addr add dev ens3 2001:19f0:5:2e2::961
-up /sbin/ip -6 addr add dev ens3 2001:19f0:5:2e2::962
-up /sbin/ip -6 addr add dev ens3 2001:19f0:5:2e2::96
+up /sbin/ip -6 addr add dev ens3 2001:19f0:5:2e2::961/64
+up /sbin/ip -6 addr add dev ens3 2001:19f0:5:2e2::962/64
+up /sbin/ip -6 addr add dev ens3 2001:19f0:5:2e2::96/64
