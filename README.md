@@ -12,7 +12,9 @@ First customize the `config.json` file, then:
  * copy `pak0.pk3` through `pak8.pk3` to `quake3-base/baseq3`
  * copy `qagamei386.so` to `proxymod-base/defrag`
  * copy `mysqlconnection.info` to `proxymod-base/defrag`
+ * copy entire modules directory to `proxymod-base/defrag`
  * copy any maps you have to `defrag-maps/defrag`
+ * copy `ipv4db.dat` to `quake3-base/` (for `/locations` to function)
  * restart the server and everything should be up and running
 
 
