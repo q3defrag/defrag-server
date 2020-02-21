@@ -8,14 +8,18 @@ First customize the `config.json` file, then:
  * `./install.sh`
  * Needs customization~ `cp interfaces /etc/network/interfaces`
  * Needs customization~ `cp df_servers.service /etc/systemd/system/`
+ * `cp df_maps.service /etc/systemd/system/`
  * `systemctl enable df_servers.service`
+ * `systemctl enable df_maps.service`
  * copy `pak0.pk3` through `pak8.pk3` to `quake3-base/baseq3`
  * copy `qagamei386.so` to `proxymod-base/defrag`
  * copy `mysqlconnection.info` to `proxymod-base/defrag`
  * copy entire modules directory to `proxymod-base/defrag`
  * copy any maps you have to `defrag-maps/defrag`
+ * Download a copy of [ipv4db.dat](edawn-mod.org/binaries/ip4db.dat)
  * copy `ipv4db.dat` to `quake3-base/` (for `/locations` to function)
  * restart the server and everything should be up and running
+ * modify `latest_map` to be the latest map you hae downloaded
 
 
 

@@ -1,0 +1,11 @@
+[Unit]
+Description=Runs map daemon to auto dl maps as they're uploaded
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /root/96/map_daemon.sh
+
+[Install]
+WantedBy=multi-user.target
