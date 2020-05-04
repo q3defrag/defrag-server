@@ -14,9 +14,9 @@ WS_URL = 'https://en.ws.q3df.org'
 WS_URL_LIST_TEMPLATE = '{}/maps/?show=50&page={{}}'.format(WS_URL)
 WS_URL_PK3_TEMPLATE = '{}/maps/downloads/{{}}.pk3'.format(WS_URL)
 
-def collect_pk3_data(final_date=None, final_pk3=None, count=None):
+def collect_pk3_data(pk3_data, final_date=None, final_pk3=None, count=None):
 
-    pk3_data = OrderedDict()
+    failure_count = 0
     current_page = 0
 
     # This variable is a flag for whether or not we have finished collecting pk3 data
@@ -24,6 +24,16 @@ def collect_pk3_data(final_date=None, final_pk3=None, count=None):
 
     while(collecting):
         page = requests.get(WS_URL_LIST_TEMPLATE.format(current_page))
+        # If we didn't get a 200 response, take a break and try again, if we fail 3 times - die.
+        if page.status_code != requests.codes['ok']:
+            if failure_count >= 3:
+                return 1
+            failure_count += 1
+            error = "Page returned status code ({}), retrying in 30s".format(page.status_code)
+            print(error, file=sys.stderr, flush=True)
+            time.sleep(30)
+            continue
+
         tree = html.fromstring(page.content)
         # Grab all the map rows, slice off the header
         maps_table = tree.xpath('//tr')[1:]
@@ -99,7 +109,7 @@ def collect_pk3_data(final_date=None, final_pk3=None, count=None):
         # Don't DOS pan :)
         time.sleep(2)
 
-    return pk3_data
+    return 0
 
 def process_arguments(argv):
     parser = argparse.ArgumentParser(description="DeFRaG server runner")
@@ -146,25 +156,34 @@ def download_pk3s(pk3_data, directory):
         print("Downloading {}...".format(pk3_name), end='', flush=True)
 
         # In python 3.7 closing() can be removed (and the import too)
-        with closing(requests.get(url,
-                     stream=True,
-                     headers={'User-agent': 'defrag-server-scraper'})) as data:
-            data.raise_for_status()
-            with open(path, 'wb') as file_descriptor:
-                shutil.copyfileobj(data.raw, file_descriptor)
+        try:
+            with closing(requests.get(url,
+                         stream=True,
+                         headers={'User-agent': 'defrag-server-scraper'})) as data:
+                data.raise_for_status()
+                with open(path, 'wb') as file_descriptor:
+                    shutil.copyfileobj(data.raw, file_descriptor)
 
-        print("DONE!")
+            print("DONE!")
+        except requests.exceptions.HTTPError:
+            print("FAIL!")
+            # Although continuing here is an option, returning prevents losing maps to auto dl scripts (with retry)
+            return 1
         # Wait a little bit before starting the next file
         time.sleep(1)
+    return 0
 
 def main(argv):
     args = process_arguments(argv)
 
     # Gather the pk3 data from worldspawn
-    pk3_data = collect_pk3_data(final_date=args.date, final_pk3=args.pk3, count=args.max)
+    pk3_data = OrderedDict()
+    rc = collect_pk3_data(pk3_data, final_date=args.date, final_pk3=args.pk3, count=args.max)
+    if rc != 0:
+        return rc
 
     # Download the pk3s from worldspawn
-    download_pk3s(pk3_data, args.directory)
+    return download_pk3s(pk3_data, args.directory)
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv))
