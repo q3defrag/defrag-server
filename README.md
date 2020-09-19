@@ -48,3 +48,4 @@ to scroll do `ctrl + b` then `page up`
  * config regeneration should happen on a single server restart (on crash too?)
  * separate other runtime artifacts (like logs) from maps directory
  * separate maps directory per server
+ * strip out everything from pk3 except for bsp to save space
