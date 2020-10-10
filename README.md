@@ -20,6 +20,8 @@ First customize the `config.json` file, then:
  * copy `ipv4db.dat` to `quake3-base/` (for `/locations` to function)
  * restart the server and everything should be up and running
  * modify `latest_map` to be the latest map you hae downloaded
+ * use [KG7x's iptables rules](https://gist.github.com/KG7x/27873277bb3c3e3230a2c09bc5e36af4) to filter out q3 ddos spam
+ * `apt install iptables-persistent` and select yes to both ipv4 and ipv6 to save the rules from previous step
 
 
 
