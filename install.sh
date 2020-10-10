@@ -36,6 +36,7 @@ apt install -y make gcc build-essential libcurl4-openssl-dev
 
 # Build Quake3e dedicated server only, omit client.
 cd Quake3e
+make clean
 make BUILD_CLIENT=0
 
 # Cleanup 
