@@ -200,6 +200,7 @@ def main(argv):
                 '+set rs_server_id {}'.format(configs[server_name]['rs_server_id']),
                 '+set com_hunkmegs {}'.format(configs[server_name]['config']['com_hunkmegs']),
                 '+set sv_pure {}'.format(configs[server_name]['config']['sv_pure']),
+                '+set sv_levelTimeReset 1',
                 '+set fs_game defrag',
                 '+set dedicated 2',
                 '+set vm_game 0',
@@ -216,7 +217,7 @@ def main(argv):
             # Run the q3e dedicated server in tmux so we can
             # freely attach and detatch from this session
             subprocess.Popen(['tmux', 'new', '-d', '-s', server_name,
-                            "{} {}".format(q3binary, ' '.join(q3args))],
+                            "nice -19 {} {}".format(q3binary, ' '.join(q3args))],
                             cwd=q3directory,
                             shell=False)
 
